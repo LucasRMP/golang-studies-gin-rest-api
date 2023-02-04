@@ -1,0 +1,6 @@
+###
+GET http://localhost:3333/students
+
+###
+GET http://localhost:3333/students/Lucas
+
