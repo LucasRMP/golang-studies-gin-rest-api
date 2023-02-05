@@ -4,16 +4,6 @@ import (
 	"github.com/LucasRMP/golang-studies-gin-rest-api/database"
 )
 
-func FindAllService() []Student {
-	return []Student{
-		{
-			Name: "John Doe",
-			CPF:  "123.456.789-00",
-			RG:   "12.345.678-9",
-		},
-	}
-}
-
 func CreateService(input CreateStudentDTO) Student {
 	studentToCreate := Student{
 		Name: input.Name,
@@ -23,4 +13,51 @@ func CreateService(input CreateStudentDTO) Student {
 
 	database.DB.Create(&studentToCreate)
 	return studentToCreate
+}
+
+func FindAllService() []Student {
+	var students []Student
+	database.DB.Find(&students)
+	return students
+}
+
+func FindByIdService(id string) (Student, error) {
+	var student Student
+	result := database.DB.First(&student, id)
+	if result.Error != nil {
+		return student, result.Error
+	}
+	return student, nil
+}
+
+func FindByCPFService(cpf string) (Student, error) {
+	var student Student
+	result := database.DB.Where("cpf = ?", cpf).First(&student)
+	if result.Error != nil {
+		return student, result.Error
+	}
+	return student, nil
+}
+
+func DeleteService(id string) error {
+	var student Student
+	result := database.DB.Delete(&student, id)
+	if result.Error != nil {
+		return result.Error
+	}
+	return nil
+}
+
+func UpdateService(id string, input UpdateStudentDTO) (Student, error) {
+	var student Student
+	result := database.DB.First(&student, id)
+	if result.Error != nil {
+		return student, result.Error
+	}
+
+	if input.Name != "" {
+		student.Name = input.Name
+	}
+	database.DB.Save(&student)
+	return student, nil
 }

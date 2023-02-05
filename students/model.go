@@ -14,3 +14,7 @@ type CreateStudentDTO struct {
 	CPF  string `json:"cpf"`
 	RG   string `json:"rg"`
 }
+
+type UpdateStudentDTO struct {
+	Name string `json:"name"`
+}

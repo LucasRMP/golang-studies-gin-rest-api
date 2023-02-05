@@ -2,7 +2,10 @@
 GET http://localhost:3333/students
 
 ###
-GET http://localhost:3333/students/Lucas
+GET http://localhost:3333/students/cpf/123.456.789-00
+
+###
+GET http://localhost:3333/students/1
 
 ###
 POST http://localhost:3333/students
@@ -13,3 +16,14 @@ Content-Type: application/json
   "cpf": "123.456.789-00",
   "rg": "123456789" 
 }
+
+###
+PUT http://localhost:3333/students/1
+Content-Type: application/json
+
+{
+  "name": "Lucas R. M. Pessone"
+}
+
+###
+DELETE http://localhost:3333/students/2
