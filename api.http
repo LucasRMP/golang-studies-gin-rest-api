@@ -13,7 +13,7 @@ Content-Type: application/json
 
 {
   "name": "Lucas Pessone",
-  "cpf": "123.456.789-00",
+  "cpf": "12345671900",
   "rg": "123456789" 
 }
 

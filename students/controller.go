@@ -8,8 +8,14 @@ import (
 
 func CreateController(c *gin.Context) {
 	var studentDTO CreateStudentDTO
+
 	if err := c.ShouldBindJSON(&studentDTO); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	if err := ValidateInterface(studentDTO); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid student"})
 		return
 	}
 
@@ -55,6 +61,11 @@ func UpdateController(c *gin.Context) {
 	student, err := UpdateService(id, studentDTO)
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
+		return
+	}
+
+	if err := ValidateInterface(studentDTO); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid student"})
 		return
 	}
 
