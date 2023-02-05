@@ -4,3 +4,12 @@ GET http://localhost:3333/students
 ###
 GET http://localhost:3333/students/Lucas
 
+###
+POST http://localhost:3333/students
+Content-Type: application/json
+
+{
+  "name": "Lucas Pessone",
+  "cpf": "123.456.789-00",
+  "rg": "123456789" 
+}

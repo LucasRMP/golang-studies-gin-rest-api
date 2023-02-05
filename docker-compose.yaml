@@ -6,11 +6,10 @@ services:
     image: postgres:latest
     volumes:
       - .pgdata:/var/lib/postgresql/data
-      - ./migration/docker-database-initial.sql:/docker-entrypoint-initdb.d/docker-database-initial.sql   
     user: 1000:1000
     environment:
       - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=personalities
+      - POSTGRES_DB=students
     ports:
       - "5432:5432"
     extra_hosts:

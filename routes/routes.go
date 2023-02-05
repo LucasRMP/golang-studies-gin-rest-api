@@ -6,6 +6,6 @@ import (
 )
 
 func RegisterRoutes(engine *gin.Engine) {
+	engine.POST("/students", students.CreateController)
 	engine.GET("/students", students.FindAllController)
-	engine.GET("/students/:name", students.SayHelloController)
 }

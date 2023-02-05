@@ -1,10 +1,16 @@
 package students
 
+import "gorm.io/gorm"
+
 type Student struct {
-	ID   int    `json:"id"`
+	gorm.Model
 	Name string `json:"name"`
 	CPF  string `json:"cpf"`
 	RG   string `json:"rg"`
 }
 
-var Students []Student
+type CreateStudentDTO struct {
+	Name string `json:"name"`
+	CPF  string `json:"cpf"`
+	RG   string `json:"rg"`
+}
